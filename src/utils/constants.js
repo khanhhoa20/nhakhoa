@@ -4,7 +4,7 @@ import { SiAdobeacrobatreader } from "react-icons/si"
 import { backgroundColor } from './color';
 
 export const sideBarConfig = [
-    { name: 'DS đặt khám', icon: <AiOutlineSchedule />, path: '/ds-dat-kham' },
+    { name: 'Danh sách đặt khám', icon: <AiOutlineSchedule />, path: '/ds-dat-kham' },
 
     { name: 'Khám bệnh', icon: <SiAdobeacrobatreader />, path: '/kham-benh' },
     { name: 'Bệnh nhân', icon: <BiBook />, path: '/benh-nhan' },
@@ -22,3 +22,8 @@ export const color = {
 export const width = {
     sidebarWidth: 280
 }
+
+// sidebar
+/*
+    color đường nét đứt #c1ccd8
+*/

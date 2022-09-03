@@ -33,7 +33,7 @@ const Sidebar = () => {
                     display: 'flex',
                     alignItems: 'center',
                     padding: "18px 5px",
-                    marginBottom: "20px",
+                    marginBottom: "35px",
                     marginLeft: '5px'
                 }} gap={4}>
                     <Ten sx={{ marginLeft: "4px" }}>Nha Khoa Đức Hạnh</Ten>
@@ -88,7 +88,7 @@ const Sidebar = () => {
                     ))}
                 </List>
             </Box>
-            <main style={{ width: "100%", padding: "20px" }}>
+            <main style={{ width: "100%", marginTop: "20px" }}>
                 <Outlet />
             </main>
         </Box >
