@@ -13,8 +13,6 @@ const rows = [
     createData('Khôi', "9874563210", "4/9/2022", "Sáng"),
 ];
 
-
-
 const Appointment = () => {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(3);
@@ -26,8 +24,7 @@ const Appointment = () => {
         setPage(0);
 
     };
-    // console.log(rowsPerPage)
-    // console.log(page)
+
     return (
         <Container>
             <Stack spacing={6.8}>
