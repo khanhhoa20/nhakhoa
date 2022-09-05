@@ -3,13 +3,16 @@ import { BiCodeBlock, BiBook, BiReceipt } from "react-icons/bi";
 import { SiAdobeacrobatreader } from "react-icons/si"
 import { backgroundColor } from './color';
 
-export const sideBarConfig = [
-    { name: 'Danh sách đặt khám', icon: <AiOutlineSchedule />, path: '/ds-dat-kham' },
+export const sideBarStaffConfig = [
+    { name: 'Danh sách đặt khám', icon: <AiOutlineSchedule />, path: '/staff/ds-dat-kham' },
 
-    { name: 'Khám bệnh', icon: <SiAdobeacrobatreader />, path: '/kham-benh' },
-    { name: 'Bệnh nhân', icon: <BiBook />, path: '/benh-nhan' },
+    { name: 'Khám bệnh', icon: <SiAdobeacrobatreader />, path: '/staff/kham-benh' },
+    { name: 'Bệnh nhân', icon: <BiBook />, path: '/staff/benh-nhan' },
 
-    { name: 'Hóa đơn', icon: <BiReceipt />, path: '/hoa-don' }
+    { name: 'Hóa đơn', icon: <BiReceipt />, path: '/staff/hoa-don' }
+]
+export const sideBarDentistConfig = [
+    { name: 'Khám bệnh', icon: <SiAdobeacrobatreader />, path: '/dentist/kham-benh' },
 ]
 
 

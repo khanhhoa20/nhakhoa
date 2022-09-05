@@ -26,8 +26,8 @@ const Appointment = () => {
         setPage(0);
 
     };
-    console.log(rowsPerPage)
-    console.log(page)
+    // console.log(rowsPerPage)
+    // console.log(page)
     return (
         <Container>
             <Stack spacing={6.8}>

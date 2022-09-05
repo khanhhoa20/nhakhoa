@@ -3,9 +3,9 @@ import { styled } from '@mui/material/styles';
 import { NavLink, Outlet } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa'
 
-import { sideBarConfig } from '../utils/constants'
-import './Sidebar'
+import { sideBarStaffConfig } from '../utils/constants'
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Ten = styled(`span`)`
     
@@ -18,11 +18,21 @@ const BarsIcon = styled('div')`
     display: flex;
     font-size: 22px;
 `
-const Sidebar = () => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
+const SidebarStaff = () => {
+    const param = useLocation();
+
+    const [selectedIndex, setSelectedIndex] = useState();
+
     const handleListItemClick = (index) => {
         setSelectedIndex(index);
     };
+    if (selectedIndex === undefined) {
+        sideBarStaffConfig.map((item, i) => (
+            item.path === param.pathname ?
+                setSelectedIndex(i) : null
+        ))
+    }
+
     return (
         <Box sx={{ display: 'flex' }}>
             <Box sx={{
@@ -41,18 +51,11 @@ const Sidebar = () => {
                         <FaBars />
                     </BarsIcon>
                 </Box>
-                {/* {
-                    sideBarConfig.map((item, i) => (
-                        <NavLink to={item.path} key={i} className="link">
-                            <div className="icon">{item.icon}</div>
-                            <div className="link_text">{item.name}</div>
-                        </NavLink>
-                    ))
-                } */}
                 <List>
-                    {sideBarConfig.map((item, index) => (
+                    {sideBarStaffConfig.map((item, index) => (
+
                         <NavLink to={item.path} key={index}>
-                            <ListItem disablePadding
+                            <ListItem disablePadding component='nav'
                                 sx={{
                                     // selected and (selected + hover) states
                                     '&& .Mui-selected, && .Mui-selected:hover': {
@@ -61,13 +64,6 @@ const Sidebar = () => {
                                             color: 'black',
                                         },
                                     },
-                                    // hover states
-                                    //   '& .MuiListItemButton-root:hover': {
-                                    //     bgcolor: 'orange',
-                                    //     '&, & .MuiListItemIcon-root': {
-                                    //       color: 'yellow',
-                                    //     },
-                                    //   },
                                 }}>
 
                                 <ListItemButton
@@ -97,4 +93,4 @@ const Sidebar = () => {
     )
 }
 
-export default Sidebar
+export default SidebarStaff
