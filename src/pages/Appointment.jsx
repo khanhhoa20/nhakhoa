@@ -1,6 +1,7 @@
-import { Card, CardContent, Container, Paper, Stack, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, Typography } from '@mui/material'
+import { Card, Container, Stack, Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers';
+import dayjs from 'dayjs';
 import { useState } from 'react';
-
 
 // data giả
 function createData(ten, sdt, date, time) {
@@ -14,6 +15,11 @@ const rows = [
 ];
 
 const Appointment = () => {
+
+    const [value, setValue] = useState(dayjs());
+    console.log(value);
+    let formattedDate = dayjs(value).format('DD/MM/YYYY');
+    console.log(formattedDate);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(3);
     const handleChangePage = (event, newPage) => {
@@ -30,7 +36,18 @@ const Appointment = () => {
             <Stack spacing={6.8}>
 
                 <Typography variant='h5'>Danh sách đặt khám</Typography>
+                <Stack sx={{ width: '250px' }}>
+                    <DatePicker
+                        label="ngày/tháng/năm"
+                        value={value}
+                        onChange={(newValue) => {
+                            setValue(newValue);
+                        }}
+                        inputFormat="DD/MM/YYYY"
+                        renderInput={(params) => <TextField {...params} />}
 
+                    />
+                </Stack>
                 <Card square={true} sx={{ boxShadow: 'none' }} >
                     <Table sx={{ minWidth: 650 }}>
                         <TableHead>
