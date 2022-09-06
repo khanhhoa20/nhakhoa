@@ -1,9 +1,8 @@
-import { Box, Card, Container, Icon, IconButton, InputAdornment, Paper, Stack, Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
-import { borderBottom } from '@mui/system';
+import { Box, Button, Card, Container, Icon, IconButton, InputAdornment, Paper, Stack, Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { useState } from 'react';
-import { BiSearchAlt2 as Search } from 'react-icons/bi'
+import { BiSearchAlt2 as Search, BiCheckCircle } from 'react-icons/bi'
 
 // data giả
 function createData(ten, sdt, date, time) {
@@ -40,6 +39,8 @@ const Appointment = () => {
         // console.log(searchTerm);
     }
 
+    const [checkIn, setcheckIn] = useState(true);
+
     return (
         <Container>
             <Stack spacing={6.8}>
@@ -51,7 +52,7 @@ const Appointment = () => {
                 >
                     <Box sx={{ width: '250px' }}>
                         <DatePicker
-                            label="ngày/tháng/năm"
+                            label="ngày-tháng-năm"
                             value={value}
                             onChange={(newValue) => {
                                 setValue(newValue);
@@ -91,10 +92,11 @@ const Appointment = () => {
                     <Table sx={{ minWidth: 650 }}>
                         <TableHead>
                             <TableRow hover>
-                                <TableCell align='center'>Tên</TableCell>
+                                <TableCell align='center'>Họ và tên</TableCell>
                                 <TableCell align='center'>Số điện thoại</TableCell>
                                 <TableCell align='center'>Ngày đặt hẹn</TableCell>
-                                <TableCell align='center'>Giờ hẹn</TableCell>
+                                <TableCell align='center'>Buổi hẹn</TableCell>
+                                <TableCell align='center'>Check in</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -107,6 +109,12 @@ const Appointment = () => {
                                         <TableCell align='center'>{row.sdt}</TableCell>
                                         <TableCell align='center'>{row.date}</TableCell>
                                         <TableCell align='center'>{row.time}</TableCell>
+                                        <TableCell align='center'>
+                                            <Button>
+                                                <BiCheckCircle color={checkIn ? 'green' : 'gray'} size='22px' />
+                                                {/* {checkIn ? 'Đã check in' : 'Chưa check in'} */}
+                                            </Button>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                         </TableBody>
