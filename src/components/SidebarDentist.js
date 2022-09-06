@@ -80,7 +80,7 @@ const SidebarDentist = () => {
                                 }}>
 
                                 <ListItemButton
-                                    sx={{ paddingBottom: "20px", fontSize: "25px" }}
+                                    sx={{ padding: "18px", fontSize: "25px" }}
                                     selected={selectedIndex === index}
                                     onClick={() => handleListItemClick(index)}>
                                     <ListItemIcon sx={{

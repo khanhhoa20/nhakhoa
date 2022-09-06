@@ -5,14 +5,14 @@ import { useState } from 'react';
 import { BiSearchAlt2 as Search, BiCheckCircle } from 'react-icons/bi'
 
 // data giả
-function createData(ten, sdt, date, time) {
-    return { ten, sdt, date, time };
+function createData(ten, sdt, date, time, color) {
+    return { ten, sdt, date, time, color };
 }
 
 const rows = [
-    createData('Sơn', "0123456789", "2/9/2021", "Sáng"),
-    createData('Tài', "7896541230", "3/9/2022", "Chiều"),
-    createData('Khôi', "9874563210", "4/9/2022", "Sáng"),
+    createData('Sơn', "0123456789", "2/9/2021", "Sáng", '#04b205'),
+    createData('Tài', "7896541230", "3/9/2022", "Chiều", '#4036364d'),
+    createData('Khôi', "9874563210", "4/9/2022", "Sáng", '#04b205'),
 ];
 
 const Appointment = () => {
@@ -39,7 +39,7 @@ const Appointment = () => {
         // console.log(searchTerm);
     }
 
-    const [checkIn, setcheckIn] = useState(true);
+    const [checkIn, setcheckIn] = useState(false);
 
     return (
         <Container>
@@ -111,8 +111,10 @@ const Appointment = () => {
                                         <TableCell align='center'>{row.time}</TableCell>
                                         <TableCell align='center'>
                                             <Button>
-                                                <BiCheckCircle color={checkIn ? 'green' : 'gray'} size='22px' />
+                                                {/* <BiCheckCircle color={checkIn ? 'green' : 'gray'} size='22px' /> */}
                                                 {/* {checkIn ? 'Đã check in' : 'Chưa check in'} */}
+
+                                                <BiCheckCircle color={row.color} size='22px' />
                                             </Button>
                                         </TableCell>
                                     </TableRow>
