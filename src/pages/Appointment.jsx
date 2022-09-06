@@ -1,7 +1,9 @@
-import { Card, Container, Stack, Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
+import { Box, Card, Container, Icon, IconButton, InputAdornment, Paper, Stack, Table, TableBody, TableCell, TableFooter, TableHead, TablePagination, TableRow, TextField, Typography } from '@mui/material';
+import { borderBottom } from '@mui/system';
 import { DatePicker } from '@mui/x-date-pickers';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+import { BiSearchAlt2 as Search } from 'react-icons/bi'
 
 // data giả
 function createData(ten, sdt, date, time) {
@@ -17,9 +19,9 @@ const rows = [
 const Appointment = () => {
 
     const [value, setValue] = useState(dayjs());
-    console.log(value);
+    // console.log(value);
     let formattedDate = dayjs(value).format('DD/MM/YYYY');
-    console.log(formattedDate);
+    // console.log(formattedDate);
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(3);
     const handleChangePage = (event, newPage) => {
@@ -31,24 +33,61 @@ const Appointment = () => {
 
     };
 
+    const [searchTerm, setSearchTerm] = useState('')
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        // console.log(searchTerm);
+    }
+
     return (
         <Container>
             <Stack spacing={6.8}>
 
                 <Typography variant='h5'>Danh sách đặt khám</Typography>
-                <Stack sx={{ width: '250px' }}>
-                    <DatePicker
-                        label="ngày/tháng/năm"
-                        value={value}
-                        onChange={(newValue) => {
-                            setValue(newValue);
+                <Stack direction='row'
+                    // alignItems='center'
+                    sx={{ justifyContent: 'space-between' }}
+                >
+                    <Box sx={{ width: '250px' }}>
+                        <DatePicker
+                            label="ngày/tháng/năm"
+                            value={value}
+                            onChange={(newValue) => {
+                                setValue(newValue);
+                            }}
+                            inputFormat="DD/MM/YYYY"
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </Box>
+                    <Box
+                        component="form"
+                        sx={{
+                            display: 'flex',
                         }}
-                        inputFormat="DD/MM/YYYY"
-                        renderInput={(params) => <TextField {...params} />}
-
-                    />
+                        onSubmit={handleSubmit}
+                    >
+                        <TextField
+                            sx={{ width: '250px' }}
+                            variant="standard"
+                            label="Tìm kiếm..."
+                            value={searchTerm}
+                            onChange={(e) => {
+                                setSearchTerm(e.target.value)
+                            }}
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <IconButton type='submit' sx={{ color: '#4285f4' }}>
+                                            <Search />
+                                        </IconButton>
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </Box>
                 </Stack>
-                <Card square={true} sx={{ boxShadow: 'none' }} >
+                <Card square={true} sx={{ boxShadow: 'none' }}  >
                     <Table sx={{ minWidth: 650 }}>
                         <TableHead>
                             <TableRow hover>
@@ -94,7 +133,7 @@ const Appointment = () => {
                 </Card>
 
             </Stack>
-        </Container>
+        </Container >
     )
 }
 
